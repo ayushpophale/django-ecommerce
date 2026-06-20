@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f1f3f6;
+        }
+
+        .container {
+            width: 800px;
+            height: 450px;
+            margin: 80px auto;
+            display: flex;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* LEFT SIDE (Flipkart Blue Panel) */
+        .left {
+            width: 40%;
+            background-color: #2874f0;
+            color: white;
+            padding: 40px 25px;
+        }
+
+        .left h2 {
+            margin-top: 0;
+        }
+
+        .left p {
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        /* RIGHT SIDE (Form) */
+        .right {
+            width: 60%;
+            background: white;
+            padding: 40px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            outline: none;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #fb641b;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e85a14;
+        }
+
+        .extra {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .extra a {
+            text-decoration: none;
+            color: #2874f0;
+            font-weight: bold;
+        }
+
+        .message {
+            color: red;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT SIDE -->
+    <div class="left">
+        <h2>Login</h2>
+        <p>Get access to your Orders, Wishlist and Recommendations</p>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right">
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input type="text" name="username" placeholder="Enter Email / Username" required>
+
+            <input type="password" name="password" placeholder="Enter Password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        {% for message in messages %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+
+        <div class="extra">
+            New to Flipkart? <a href="{% url 'register' %}">Create an account</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
